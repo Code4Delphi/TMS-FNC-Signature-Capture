@@ -42,6 +42,13 @@ O executável será gerado em `Bin/Win32/Debug/SignatureCaptureDemo.exe`.
 <img width="524" height="124" alt="VCL-FMX-Web-FNC" src="https://github.com/user-attachments/assets/17b23899-0e26-4901-810e-f9a03e38deae" />
 
 ## Screenshots
+
+<img width="981" height="714" alt="image" src="https://github.com/user-attachments/assets/102ff2f2-2f90-419f-8e73-3bc902cd9e0a" />
+
+<br>
+<br>
+
+
 <img width="356" height="166" alt="image" src="https://github.com/user-attachments/assets/0e5f25b2-c55e-4189-b7aa-fe8a6a25f37f" />
 
 
