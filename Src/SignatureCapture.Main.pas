@@ -42,20 +42,20 @@ type
     btnSave: TButton;
     btnLoad: TButton;
     btnUpdatePreview: TButton;
-    btnExportPNG: TButton;
+    btnExportImage: TButton;
     gBoxPreview: TGroupBox;
     imgPreview: TImage;
     statusBar: TStatusBar;
     SaveDialogSig: TSaveDialog;
     OpenDialogSig: TOpenDialog;
-    SaveDialogPNG: TSaveDialog;
+    SaveDialogImg: TSaveDialog;
     pnBody: TPanel;
     procedure FormCreate(Sender: TObject);
     procedure btnClearClick(Sender: TObject);
     procedure btnSaveClick(Sender: TObject);
     procedure btnLoadClick(Sender: TObject);
     procedure btnUpdatePreviewClick(Sender: TObject);
-    procedure btnExportPNGClick(Sender: TObject);
+    procedure btnExportImageClick(Sender: TObject);
     procedure cBoxPenColorChange(Sender: TObject);
   private
     procedure SettingsChange;
@@ -148,23 +148,15 @@ begin
   end;
 end;
 
-procedure TSignatureCaptureForm.btnExportPNGClick(Sender: TObject);
+procedure TSignatureCaptureForm.btnExportImageClick(Sender: TObject);
 begin
   if SignatureCapture.Empty then
     raise Exception.Create('Please draw a signature first.');
 
-  if not SaveDialogPNG.Execute then
+  if not SaveDialogImg.Execute then
     Exit;
 
-  SignatureCapture.SaveToImageFile(SaveDialogPNG.FileName);
-
-//  var LImage := Self.CreateSignatureImage;
-//  try
-//    LImage.SaveToFile(SaveDialogPNG.FileName);
-//    imgPreview.Picture.Assign(LImage);
-//  finally
-//    LImage.Free;
-//  end;
+  SignatureCapture.SaveToImageFile(SaveDialogImg.FileName);
 end;
 
 function TSignatureCaptureForm.CreateSignatureImage: TPngImage;

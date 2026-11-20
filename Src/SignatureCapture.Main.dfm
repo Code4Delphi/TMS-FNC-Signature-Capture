@@ -289,14 +289,14 @@ object SignatureCaptureForm: TSignatureCaptureForm
         TabOrder = 3
         OnClick = btnUpdatePreviewClick
       end
-      object btnExportPNG: TButton
+      object btnExportImage: TButton
         Left = 624
         Top = 0
         Width = 152
         Height = 34
-        Caption = '&Export PNG...'
+        Caption = '&Export Image...'
         TabOrder = 4
-        OnClick = btnExportPNGClick
+        OnClick = btnExportImageClick
       end
     end
   end
@@ -317,7 +317,7 @@ object SignatureCaptureForm: TSignatureCaptureForm
     Left = 496
     Top = 272
   end
-  object SaveDialogPNG: TSaveDialog
+  object SaveDialogImg: TSaveDialog
     DefaultExt = 'png'
     FileName = 'signature.png'
     Filter = 'PNG images (*.png)|*.png'
