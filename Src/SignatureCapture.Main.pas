@@ -156,6 +156,23 @@ begin
   SignatureCapture.Invalidate;
 end;
 
+procedure TSignatureCaptureForm.btnPreviewClick(Sender: TObject);
+begin
+  Self.RequireSignature;
+  Self.UpdatePreview;
+  Self.SetStatus('Image preview updated. The hint and clear icon are excluded.');
+end;
+
+procedure TSignatureCaptureForm.UpdatePreview;
+begin
+  var LImage := Self.CreateSignatureImage;
+  try
+    imgPreview.Picture.Assign(LImage);
+  finally
+    LImage.Free;
+  end;
+end;
+
 function TSignatureCaptureForm.CreateSignatureImage: TPngImage;
 begin
   var LStream := TMemoryStream.Create;
@@ -180,23 +197,6 @@ begin
   finally
     LStream.Free;
   end;
-end;
-
-procedure TSignatureCaptureForm.UpdatePreview;
-begin
-  var LImage := Self.CreateSignatureImage;
-  try
-    imgPreview.Picture.Assign(LImage);
-  finally
-    LImage.Free;
-  end;
-end;
-
-procedure TSignatureCaptureForm.btnPreviewClick(Sender: TObject);
-begin
-  Self.RequireSignature;
-  Self.UpdatePreview;
-  Self.SetStatus('Image preview updated. The hint and clear icon are excluded.');
 end;
 
 procedure TSignatureCaptureForm.btnExportClick(Sender: TObject);

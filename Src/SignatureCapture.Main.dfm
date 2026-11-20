@@ -1,9 +1,11 @@
 object SignatureCaptureForm: TSignatureCaptureForm
   Left = 0
   Top = 0
-  Caption = 'TMS FNC Signature Capture Demo'
-  ClientHeight = 853
-  ClientWidth = 960
+  Caption = 
+    'TMS FNC Signature Capture Demo (Componente de Captura de Assinat' +
+    'uras)'
+  ClientHeight = 800
+  ClientWidth = 979
   Color = clBtnFace
   Constraints.MinHeight = 799
   Constraints.MinWidth = 976
@@ -16,26 +18,25 @@ object SignatureCaptureForm: TSignatureCaptureForm
   Position = poScreenCenter
   OnCreate = FormCreate
   OnDestroy = FormDestroy
-  DesignSize = (
-    960
-    853)
   TextHeight = 17
   object pnHeader: TPanel
     Left = 0
     Top = 0
-    Width = 960
+    Width = 979
     Height = 80
     Align = alTop
     BevelOuter = bvNone
     Color = 5583379
     ParentBackground = False
     TabOrder = 0
+    ExplicitTop = -6
+    ExplicitWidth = 960
     object lbTitle: TLabel
       Left = 20
       Top = 12
-      Width = 207
+      Width = 503
       Height = 32
-      Caption = 'Signature Capture'
+      Caption = 'Signature Capture (Captura de Assinaturas) '
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWhite
       Font.Height = -24
@@ -62,7 +63,7 @@ object SignatureCaptureForm: TSignatureCaptureForm
   object gBoxSettings: TGroupBox
     Left = 0
     Top = 80
-    Width = 960
+    Width = 979
     Height = 96
     Align = alTop
     Caption = ' Pen and appearance '
@@ -169,16 +170,20 @@ object SignatureCaptureForm: TSignatureCaptureForm
   object gBoxCapture: TGroupBox
     Left = 0
     Top = 176
-    Width = 960
-    Height = 97
-    Align = alTop
+    Width = 979
+    Height = 360
+    Align = alClient
     Caption = ' Draw your signature '
     TabOrder = 2
+    ExplicitLeft = 1
+    ExplicitTop = 171
+    ExplicitWidth = 960
+    ExplicitHeight = 97
     object SignatureCapture: TTMSFNCSignatureCapture
       Left = 2
       Top = 19
-      Width = 956
-      Height = 76
+      Width = 975
+      Height = 339
       Align = alClient
       ParentDoubleBuffered = False
       DoubleBuffered = True
@@ -207,155 +212,164 @@ object SignatureCaptureForm: TSignatureCaptureForm
         9BF81DFC6D961806E2BF2A28CDD9C4256B3C02F9ABAA11E0B2DB6EBD2B3973E8
         CAEBF07FA5015AFF9B23FE032285D13DFC9B4C88A8514AD93EEFA3BFD4B80259
         7AAE192BE517620000000049454E44AE426082}
-      ExplicitLeft = 20
-      ExplicitTop = 17
-      ExplicitWidth = 928
-      ExplicitHeight = 232
-    end
-  end
-  object pnActions: TPanel
-    Left = 16
-    Top = 587
-    Width = 928
-    Height = 36
-    Anchors = [akLeft, akRight, akBottom]
-    BevelOuter = bvNone
-    TabOrder = 3
-    object btnClear: TButton
-      Left = 0
-      Top = 0
-      Width = 120
-      Height = 34
-      Caption = '&Clear'
-      TabOrder = 0
-      OnClick = btnClearClick
-    end
-    object btnSave: TButton
-      Left = 132
-      Top = 0
-      Width = 152
-      Height = 34
-      Caption = '&Save signature...'
-      TabOrder = 1
-      OnClick = btnSaveClick
-    end
-    object btnLoad: TButton
-      Left = 296
-      Top = 0
-      Width = 152
-      Height = 34
-      Caption = '&Load signature...'
-      TabOrder = 2
-      OnClick = btnLoadClick
-    end
-    object btnPreview: TButton
-      Left = 460
-      Top = 0
-      Width = 152
-      Height = 34
-      Caption = 'Update &preview'
-      TabOrder = 3
-      OnClick = btnPreviewClick
-    end
-    object btnExport: TButton
-      Left = 624
-      Top = 0
-      Width = 152
-      Height = 34
-      Caption = '&Export PNG...'
-      TabOrder = 4
-      OnClick = btnExportClick
-    end
-  end
-  object gBoxPreview: TGroupBox
-    Left = 16
-    Top = 629
-    Width = 568
-    Height = 188
-    Anchors = [akLeft, akRight, akBottom]
-    Caption = ' Export preview (click Update preview to refresh) '
-    TabOrder = 4
-    ExplicitTop = 536
-    DesignSize = (
-      568
-      188)
-    object imgPreview: TImage
-      Left = 16
-      Top = 28
-      Width = 536
-      Height = 144
-      Anchors = [akLeft, akTop, akRight, akBottom]
-      Center = True
-      Proportional = True
-      Stretch = True
-    end
-  end
-  object gBoxMemory: TGroupBox
-    Left = 600
-    Top = 629
-    Width = 344
-    Height = 188
-    Anchors = [akRight, akBottom]
-    Caption = ' Memory stream '
-    TabOrder = 5
-    ExplicitTop = 536
-    object lbMemoryHelp: TLabel
-      Left = 16
-      Top = 28
-      Width = 312
-      Height = 42
-      AutoSize = False
-      Caption = 
-        'Store a copy, clear the pad, then restore it without using a fil' +
-        'e.'
-      WordWrap = True
-    end
-    object lbMemoryStatus: TLabel
-      Left = 16
-      Top = 128
-      Width = 312
-      Height = 34
-      AutoSize = False
-      Caption = 'No signature stored in memory.'
-      WordWrap = True
-    end
-    object btnStoreMemory: TButton
-      Left = 16
-      Top = 80
-      Width = 148
-      Height = 34
-      Caption = 'Store in &memory'
-      TabOrder = 0
-      OnClick = btnStoreMemoryClick
-    end
-    object btnRestoreMemory: TButton
-      Left = 180
-      Top = 80
-      Width = 148
-      Height = 34
-      Caption = '&Restore'
-      Enabled = False
-      TabOrder = 1
-      OnClick = btnRestoreMemoryClick
+      ExplicitLeft = 1
+      ExplicitTop = 15
+      ExplicitWidth = 956
+      ExplicitHeight = 410
     end
   end
   object statusBar: TStatusBar
     Left = 0
-    Top = 831
-    Width = 960
+    Top = 778
+    Width = 979
     Height = 22
     Panels = <>
     SimplePanel = True
     ExplicitTop = 738
+    ExplicitWidth = 960
   end
   object pnBody: TPanel
     Left = 0
-    Top = 273
-    Width = 960
-    Height = 288
-    Align = alTop
-    Caption = 'pnBody'
-    TabOrder = 7
+    Top = 536
+    Width = 979
+    Height = 242
+    Align = alBottom
+    BevelOuter = bvNone
+    Padding.Top = 10
+    TabOrder = 4
+    object gBoxMemory: TGroupBox
+      Left = 641
+      Top = 46
+      Width = 338
+      Height = 196
+      Align = alRight
+      Caption = ' Memory stream '
+      TabOrder = 0
+      ExplicitLeft = 640
+      object lbMemoryHelp: TLabel
+        Left = 13
+        Top = 28
+        Width = 305
+        Height = 42
+        AutoSize = False
+        Caption = 
+          'Store a copy, clear the pad, then restore it without using a fil' +
+          'e.'
+        WordWrap = True
+      end
+      object lbMemoryStatus: TLabel
+        Left = 13
+        Top = 128
+        Width = 312
+        Height = 34
+        AutoSize = False
+        Caption = 'No signature stored in memory.'
+        WordWrap = True
+      end
+      object btnStoreMemory: TButton
+        Left = 13
+        Top = 80
+        Width = 148
+        Height = 34
+        Caption = 'Store in &memory'
+        TabOrder = 0
+        OnClick = btnStoreMemoryClick
+      end
+      object btnRestoreMemory: TButton
+        Left = 177
+        Top = 80
+        Width = 148
+        Height = 34
+        Caption = '&Restore'
+        Enabled = False
+        TabOrder = 1
+        OnClick = btnRestoreMemoryClick
+      end
+    end
+    object gBoxPreview: TGroupBox
+      Left = 0
+      Top = 46
+      Width = 641
+      Height = 196
+      Align = alClient
+      Caption = ' Export preview (click Update preview to refresh) '
+      TabOrder = 1
+      ExplicitLeft = 16
+      ExplicitTop = 140
+      ExplicitWidth = 568
+      ExplicitHeight = 188
+      object imgPreview: TImage
+        Left = 2
+        Top = 19
+        Width = 637
+        Height = 175
+        Align = alClient
+        Center = True
+        Proportional = True
+        Stretch = True
+        ExplicitLeft = 16
+        ExplicitTop = 28
+        ExplicitWidth = 536
+        ExplicitHeight = 144
+      end
+    end
+    object pnActions: TPanel
+      Left = 0
+      Top = 10
+      Width = 979
+      Height = 36
+      Align = alTop
+      BevelOuter = bvNone
+      TabOrder = 2
+      ExplicitLeft = 16
+      ExplicitTop = 292
+      ExplicitWidth = 928
+      object btnClear: TButton
+        Left = 0
+        Top = 0
+        Width = 120
+        Height = 34
+        Caption = '&Clear'
+        TabOrder = 0
+        OnClick = btnClearClick
+      end
+      object btnSave: TButton
+        Left = 132
+        Top = 0
+        Width = 152
+        Height = 34
+        Caption = '&Save signature...'
+        TabOrder = 1
+        OnClick = btnSaveClick
+      end
+      object btnLoad: TButton
+        Left = 296
+        Top = 0
+        Width = 152
+        Height = 34
+        Caption = '&Load signature...'
+        TabOrder = 2
+        OnClick = btnLoadClick
+      end
+      object btnPreview: TButton
+        Left = 460
+        Top = 0
+        Width = 152
+        Height = 34
+        Caption = 'Update &preview'
+        TabOrder = 3
+        OnClick = btnPreviewClick
+      end
+      object btnExport: TButton
+        Left = 624
+        Top = 0
+        Width = 152
+        Height = 34
+        Caption = '&Export PNG...'
+        TabOrder = 4
+        OnClick = btnExportClick
+      end
+    end
   end
   object dlgSaveSignature: TSaveDialog
     DefaultExt = 'sig'
