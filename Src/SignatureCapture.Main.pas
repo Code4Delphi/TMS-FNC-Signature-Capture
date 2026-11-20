@@ -41,8 +41,8 @@ type
     btnClear: TButton;
     btnSave: TButton;
     btnLoad: TButton;
-    btnPreview: TButton;
-    btnExport: TButton;
+    btnUpdatePreview: TButton;
+    btnExportPNG: TButton;
     gBoxPreview: TGroupBox;
     imgPreview: TImage;
     statusBar: TStatusBar;
@@ -54,14 +54,12 @@ type
     procedure btnClearClick(Sender: TObject);
     procedure btnSaveClick(Sender: TObject);
     procedure btnLoadClick(Sender: TObject);
-    procedure btnPreviewClick(Sender: TObject);
-    procedure btnExportClick(Sender: TObject);
+    procedure btnUpdatePreviewClick(Sender: TObject);
+    procedure btnExportPNGClick(Sender: TObject);
     procedure cBoxPenColorChange(Sender: TObject);
   private
     procedure SettingsChange;
-    procedure RequireSignature;
     procedure UpdatePreview;
-    procedure SyncLoadedSettings;
     function CreateSignatureImage: TPngImage;
   public
   end;
@@ -103,22 +101,19 @@ begin
   SignatureCapture.Invalidate;
 end;
 
-procedure TSignatureCaptureForm.RequireSignature;
-begin
-  if SignatureCapture.Empty then
-    raise Exception.Create('Please draw a signature first.');
-end;
-
 procedure TSignatureCaptureForm.btnClearClick(Sender: TObject);
 begin
   SignatureCapture.Empty := True;
+  //requests that the component be redesigned / solicita que o componente seja redesenhado
   SignatureCapture.Invalidate;
   imgPreview.Picture.Assign(nil);
 end;
 
 procedure TSignatureCaptureForm.btnSaveClick(Sender: TObject);
 begin
-  Self.RequireSignature;
+  if SignatureCapture.Empty then
+    raise Exception.Create('Please draw a signature first.');
+
   if not SaveDialogSig.Execute then
     Exit;
 
@@ -131,20 +126,15 @@ begin
     Exit;
 
   SignatureCapture.LoadFromFile(OpenDialogSig.FileName);
-  Self.SyncLoadedSettings;
+  SignatureCapture.Invalidate;
   Self.UpdatePreview;
 end;
 
-procedure TSignatureCaptureForm.SyncLoadedSettings;
+procedure TSignatureCaptureForm.btnUpdatePreviewClick(Sender: TObject);
 begin
-  // The native signature format also restores the hint text and font.
-  edtHintText.Text := SignatureCapture.Text;
-  SignatureCapture.Invalidate;
-end;
+  if SignatureCapture.Empty then
+    raise Exception.Create('Please draw a signature first.');
 
-procedure TSignatureCaptureForm.btnPreviewClick(Sender: TObject);
-begin
-  Self.RequireSignature;
   Self.UpdatePreview;
 end;
 
@@ -156,6 +146,25 @@ begin
   finally
     LImage.Free;
   end;
+end;
+
+procedure TSignatureCaptureForm.btnExportPNGClick(Sender: TObject);
+begin
+  if SignatureCapture.Empty then
+    raise Exception.Create('Please draw a signature first.');
+
+  if not SaveDialogPNG.Execute then
+    Exit;
+
+  SignatureCapture.SaveToImageFile(SaveDialogPNG.FileName);
+
+//  var LImage := Self.CreateSignatureImage;
+//  try
+//    LImage.SaveToFile(SaveDialogPNG.FileName);
+//    imgPreview.Picture.Assign(LImage);
+//  finally
+//    LImage.Free;
+//  end;
 end;
 
 function TSignatureCaptureForm.CreateSignatureImage: TPngImage;
@@ -181,21 +190,6 @@ begin
     end;
   finally
     LStream.Free;
-  end;
-end;
-
-procedure TSignatureCaptureForm.btnExportClick(Sender: TObject);
-begin
-  Self.RequireSignature;
-  if not SaveDialogPNG.Execute then
-    Exit;
-
-  var LImage := Self.CreateSignatureImage;
-  try
-    LImage.SaveToFile(SaveDialogPNG.FileName);
-    imgPreview.Picture.Assign(LImage);
-  finally
-    LImage.Free;
   end;
 end;
 

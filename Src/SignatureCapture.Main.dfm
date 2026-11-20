@@ -183,6 +183,7 @@ object SignatureCaptureForm: TSignatureCaptureForm
       Font.Name = 'Segoe UI'
       Font.Style = []
       TabOrder = 0
+      OnClick = cBoxPenColorChange
       Pen.Color = clNavy
       Pen.Width = 2.000000000000000000
       TextPosition.Line.Color = clGray
@@ -279,23 +280,23 @@ object SignatureCaptureForm: TSignatureCaptureForm
         TabOrder = 2
         OnClick = btnLoadClick
       end
-      object btnPreview: TButton
+      object btnUpdatePreview: TButton
         Left = 460
         Top = 0
         Width = 152
         Height = 34
         Caption = 'Update &preview'
         TabOrder = 3
-        OnClick = btnPreviewClick
+        OnClick = btnUpdatePreviewClick
       end
-      object btnExport: TButton
+      object btnExportPNG: TButton
         Left = 624
         Top = 0
         Width = 152
         Height = 34
         Caption = '&Export PNG...'
         TabOrder = 4
-        OnClick = btnExportClick
+        OnClick = btnExportPNGClick
       end
     end
   end
