@@ -105,7 +105,7 @@ object SignatureCaptureForm: TSignatureCaptureForm
       Selected = clNavy
       Style = [cbStandardColors, cbPrettyNames]
       TabOrder = 0
-      OnChange = SettingsChange
+      OnChange = cBoxPenColorChange
     end
     object cBoxPenWidth: TComboBox
       Left = 176
@@ -116,7 +116,7 @@ object SignatureCaptureForm: TSignatureCaptureForm
       ItemIndex = 1
       TabOrder = 1
       Text = '2'
-      OnChange = SettingsChange
+      OnChange = cBoxPenColorChange
       Items.Strings = (
         '1'
         '2'
@@ -132,7 +132,7 @@ object SignatureCaptureForm: TSignatureCaptureForm
       Height = 25
       TabOrder = 2
       Text = 'Sign here'
-      OnChange = SettingsChange
+      OnChange = cBoxPenColorChange
     end
     object cBoxHintPosition: TComboBox
       Left = 520
@@ -143,7 +143,7 @@ object SignatureCaptureForm: TSignatureCaptureForm
       ItemIndex = 0
       TabOrder = 3
       Text = 'Bottom center'
-      OnChange = SettingsChange
+      OnChange = cBoxPenColorChange
       Items.Strings = (
         'Bottom center'
         'Top center'
@@ -158,7 +158,7 @@ object SignatureCaptureForm: TSignatureCaptureForm
       Checked = True
       State = cbChecked
       TabOrder = 4
-      OnClick = SettingsChange
+      OnClick = cBoxPenColorChange
     end
   end
   object gBoxCapture: TGroupBox
@@ -169,7 +169,6 @@ object SignatureCaptureForm: TSignatureCaptureForm
     Align = alClient
     Caption = ' Draw your signature '
     TabOrder = 2
-    ExplicitHeight = 336
     object SignatureCapture: TTMSFNCSignatureCapture
       Left = 2
       Top = 19
@@ -205,7 +204,6 @@ object SignatureCaptureForm: TSignatureCaptureForm
         AE192BE517620000000049454E44AE426082}
       ExplicitLeft = 3
       ExplicitTop = 15
-      ExplicitHeight = 315
     end
   end
   object statusBar: TStatusBar
@@ -215,7 +213,6 @@ object SignatureCaptureForm: TSignatureCaptureForm
     Height = 22
     Panels = <>
     SimplePanel = True
-    ExplicitTop = 754
   end
   object pnBody: TPanel
     Left = 0
@@ -226,7 +223,6 @@ object SignatureCaptureForm: TSignatureCaptureForm
     BevelOuter = bvNone
     Padding.Top = 10
     TabOrder = 4
-    ExplicitTop = 512
     object gBoxPreview: TGroupBox
       Left = 0
       Top = 46

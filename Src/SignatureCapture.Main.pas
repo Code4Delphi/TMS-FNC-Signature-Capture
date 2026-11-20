@@ -51,17 +51,17 @@ type
     SaveDialogPNG: TSaveDialog;
     pnBody: TPanel;
     procedure FormCreate(Sender: TObject);
-    procedure SettingsChange(Sender: TObject);
     procedure btnClearClick(Sender: TObject);
     procedure btnSaveClick(Sender: TObject);
     procedure btnLoadClick(Sender: TObject);
     procedure btnPreviewClick(Sender: TObject);
     procedure btnExportClick(Sender: TObject);
+    procedure cBoxPenColorChange(Sender: TObject);
   private
+    procedure SettingsChange;
     procedure RequireSignature;
     procedure UpdatePreview;
     procedure SyncLoadedSettings;
-    procedure SetStatus(const AMessage: string);
     function CreateSignatureImage: TPngImage;
   public
   end;
@@ -75,11 +75,15 @@ implementation
 
 procedure TSignatureCaptureForm.FormCreate(Sender: TObject);
 begin
-  Self.SettingsChange(nil);
-  Self.SetStatus('Ready. Draw your signature with a mouse or touch.');
+  Self.SettingsChange;
 end;
 
-procedure TSignatureCaptureForm.SettingsChange(Sender: TObject);
+procedure TSignatureCaptureForm.cBoxPenColorChange(Sender: TObject);
+begin
+  Self.SettingsChange;
+end;
+
+procedure TSignatureCaptureForm.SettingsChange;
 begin
   SignatureCapture.Pen.Color := TTMSFNCGraphicsColor(ColorToRGB(cBoxPenColor.Selected));
   SignatureCapture.Pen.Width := StrToIntDef(cBoxPenWidth.Text, 2);
@@ -105,17 +109,11 @@ begin
     raise Exception.Create('Please draw a signature first.');
 end;
 
-procedure TSignatureCaptureForm.SetStatus(const AMessage: string);
-begin
-  statusBar.SimpleText := AMessage;
-end;
-
 procedure TSignatureCaptureForm.btnClearClick(Sender: TObject);
 begin
   SignatureCapture.Empty := True;
   SignatureCapture.Invalidate;
   imgPreview.Picture.Assign(nil);
-  Self.SetStatus('Signature cleared. The memory copy is still available.');
 end;
 
 procedure TSignatureCaptureForm.btnSaveClick(Sender: TObject);
@@ -125,7 +123,6 @@ begin
     Exit;
 
   SignatureCapture.SaveToFile(SaveDialogSig.FileName);
-  Self.SetStatus('Signature saved: ' + SaveDialogSig.FileName);
 end;
 
 procedure TSignatureCaptureForm.btnLoadClick(Sender: TObject);
@@ -136,7 +133,6 @@ begin
   SignatureCapture.LoadFromFile(OpenDialogSig.FileName);
   Self.SyncLoadedSettings;
   Self.UpdatePreview;
-  Self.SetStatus('Signature loaded: ' + OpenDialogSig.FileName);
 end;
 
 procedure TSignatureCaptureForm.SyncLoadedSettings;
@@ -150,7 +146,6 @@ procedure TSignatureCaptureForm.btnPreviewClick(Sender: TObject);
 begin
   Self.RequireSignature;
   Self.UpdatePreview;
-  Self.SetStatus('Image preview updated. The hint and clear icon are excluded.');
 end;
 
 procedure TSignatureCaptureForm.UpdatePreview;
@@ -202,7 +197,6 @@ begin
   finally
     LImage.Free;
   end;
-  Self.SetStatus('PNG image exported: ' + SaveDialogPNG.FileName);
 end;
 
 end.
