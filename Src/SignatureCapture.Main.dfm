@@ -4,11 +4,11 @@ object SignatureCaptureForm: TSignatureCaptureForm
   Caption = 
     'TMS FNC Signature Capture Demo (Componente de Captura de Assinat' +
     'uras)'
-  ClientHeight = 776
+  ClientHeight = 682
   ClientWidth = 979
   Color = clBtnFace
-  Constraints.MinHeight = 799
-  Constraints.MinWidth = 976
+  Constraints.MinHeight = 500
+  Constraints.MinWidth = 500
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
   Font.Height = -13
@@ -165,15 +165,16 @@ object SignatureCaptureForm: TSignatureCaptureForm
     Left = 0
     Top = 176
     Width = 979
-    Height = 336
+    Height = 242
     Align = alClient
     Caption = ' Draw your signature '
     TabOrder = 2
+    ExplicitHeight = 336
     object SignatureCapture: TTMSFNCSignatureCapture
       Left = 2
       Top = 19
       Width = 975
-      Height = 315
+      Height = 221
       Align = alClient
       ParentDoubleBuffered = False
       DoubleBuffered = True
@@ -188,39 +189,44 @@ object SignatureCaptureForm: TSignatureCaptureForm
       TextPosition.Line.Color = clGray
       ClearSig.Position = cpBottomRight
       ClearSig.Image.Data = {
-        0954506E67496D61676589504E470D0A1A0A0000000D494844520000001800
-        0000180806000000E0773DF8000000097048597300000EC300000EC301C76FA8
-        640000015A4944415478DABD95817183300C456103466004BA01D92099A06483
-        6682BA13944E906CD07482B0411881113242BE7A9F9E221B9B5C437CA723912D
-        3DFB5B823C5B78E44F0338E74A3C3E6105EC077680EFF248C0371E6B3527C9BF
-        E0774B01C6D1C356734F8375C59807BF0F56A23325B2E342481F495CE3F10A6B
-        B8A90D7C436E1609444E524DE4D9CAAE4C4CC3C4355D2D7C3B4F221324BABFC7
-        20DCF11E56D23F70AE0BDE4100523141E834BDF1B7B08FD03D25FB20719AE0AE
-        EF021022729C025322D536163BE7046B4A554C2CF12E7E360081D2D96FCA251A
-        8B1CB65F5EA64A78AA8A0A4A5299E4BFBDC0D2DCABB98190F425B37A4E4612AF
-        D10290237C9B28606E72B55E008D7249F71E8380C8ABC20B8A403CA93440765E
-        9BF81DFC6D961806E2BF2A28CDD9C4256B3C02F9ABAA11E0B2DB6EBD2B3973E8
-        CAEBF07FA5015AFF9B23FE032285D13DFC9B4C88A8514AD93EEFA3BFD4B80259
-        7AAE192BE517620000000049454E44AE426082}
+        0954506E67496D61676589504E470D0A1A0A0000000D49484452000000180000
+        00180806000000E0773DF8000000097048597300000EC300000EC301C76FA864
+        0000015A4944415478DABD95817183300C456103466004BA01D92099A0648366
+        82BA13944E906CD07482B0411881113242BE7A9F9E221B9B5C437CA723912D3D
+        FB5B823C5B78E44F0338E74A3C3E6105EC077680EFF248C0371E6B3527C9BFE0
+        774B01C6D1C356734F8375C59807BF0F56A23325B2E342481F495CE3F10A6BB8
+        A90D7C436E1609444E524DE4D9CAAE4C4CC3C4355D2D7C3B4F221324BABFC720
+        DCF11E56D23F70AE0BDE4100523141E834BDF1B7B08FD03D25FB20719AE0AEEF
+        021022729C025322D536163BE7046B4A554C2CF12E7E360081D2D96FCA251A8B
+        1CB65F5EA64A78AA8A0A4A5299E4BFBDC0D2DCABB98190F425B37A4E4612AFD1
+        0290237C9B28606E72B55E008D7249F71E8380C8ABC20B8A403CA93440765E9B
+        F81DFC6D961806E2BF2A28CDD9C4256B3C02F9ABAA11E0B2DB6EBD2B3973E8CA
+        EBF07FA5015AFF9B23FE032285D13DFC9B4C88A8514AD93EEFA3BFD4B802597A
+        AE192BE517620000000049454E44AE426082}
+      ExplicitLeft = 3
+      ExplicitTop = 15
+      ExplicitHeight = 315
     end
   end
   object statusBar: TStatusBar
     Left = 0
-    Top = 754
+    Top = 660
     Width = 979
     Height = 22
     Panels = <>
     SimplePanel = True
+    ExplicitTop = 754
   end
   object pnBody: TPanel
     Left = 0
-    Top = 512
+    Top = 418
     Width = 979
     Height = 242
     Align = alBottom
     BevelOuter = bvNone
     Padding.Top = 10
     TabOrder = 4
+    ExplicitTop = 512
     object gBoxPreview: TGroupBox
       Left = 0
       Top = 46
@@ -238,10 +244,8 @@ object SignatureCaptureForm: TSignatureCaptureForm
         Center = True
         Proportional = True
         Stretch = True
-        ExplicitLeft = 16
-        ExplicitTop = 28
-        ExplicitWidth = 536
-        ExplicitHeight = 144
+        ExplicitLeft = 3
+        ExplicitTop = 18
       end
     end
     object pnActions: TPanel
@@ -299,7 +303,7 @@ object SignatureCaptureForm: TSignatureCaptureForm
       end
     end
   end
-  object dlgSaveSignature: TSaveDialog
+  object SaveDialogSig: TSaveDialog
     DefaultExt = 'sig'
     FileName = 'signature.sig'
     Filter = 'Signature files (*.sig)|*.sig'
@@ -308,7 +312,7 @@ object SignatureCaptureForm: TSignatureCaptureForm
     Left = 384
     Top = 272
   end
-  object dlgOpenSignature: TOpenDialog
+  object OpenDialogSig: TOpenDialog
     DefaultExt = 'sig'
     Filter = 'Signature files (*.sig)|*.sig'
     Options = [ofHideReadOnly, ofPathMustExist, ofFileMustExist, ofEnableSizing]
@@ -316,7 +320,7 @@ object SignatureCaptureForm: TSignatureCaptureForm
     Left = 496
     Top = 272
   end
-  object dlgExportImage: TSaveDialog
+  object SaveDialogPNG: TSaveDialog
     DefaultExt = 'png'
     FileName = 'signature.png'
     Filter = 'PNG images (*.png)|*.png'

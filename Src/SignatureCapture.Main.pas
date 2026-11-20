@@ -46,9 +46,9 @@ type
     gBoxPreview: TGroupBox;
     imgPreview: TImage;
     statusBar: TStatusBar;
-    dlgSaveSignature: TSaveDialog;
-    dlgOpenSignature: TOpenDialog;
-    dlgExportImage: TSaveDialog;
+    SaveDialogSig: TSaveDialog;
+    OpenDialogSig: TOpenDialog;
+    SaveDialogPNG: TSaveDialog;
     pnBody: TPanel;
     procedure FormCreate(Sender: TObject);
     procedure SettingsChange(Sender: TObject);
@@ -121,22 +121,22 @@ end;
 procedure TSignatureCaptureForm.btnSaveClick(Sender: TObject);
 begin
   Self.RequireSignature;
-  if not dlgSaveSignature.Execute then
+  if not SaveDialogSig.Execute then
     Exit;
 
-  SignatureCapture.SaveToFile(dlgSaveSignature.FileName);
-  Self.SetStatus('Signature saved: ' + dlgSaveSignature.FileName);
+  SignatureCapture.SaveToFile(SaveDialogSig.FileName);
+  Self.SetStatus('Signature saved: ' + SaveDialogSig.FileName);
 end;
 
 procedure TSignatureCaptureForm.btnLoadClick(Sender: TObject);
 begin
-  if not dlgOpenSignature.Execute then
+  if not OpenDialogSig.Execute then
     Exit;
 
-  SignatureCapture.LoadFromFile(dlgOpenSignature.FileName);
+  SignatureCapture.LoadFromFile(OpenDialogSig.FileName);
   Self.SyncLoadedSettings;
   Self.UpdatePreview;
-  Self.SetStatus('Signature loaded: ' + dlgOpenSignature.FileName);
+  Self.SetStatus('Signature loaded: ' + OpenDialogSig.FileName);
 end;
 
 procedure TSignatureCaptureForm.SyncLoadedSettings;
@@ -192,17 +192,17 @@ end;
 procedure TSignatureCaptureForm.btnExportClick(Sender: TObject);
 begin
   Self.RequireSignature;
-  if not dlgExportImage.Execute then
+  if not SaveDialogPNG.Execute then
     Exit;
 
   var LImage := Self.CreateSignatureImage;
   try
-    LImage.SaveToFile(dlgExportImage.FileName);
+    LImage.SaveToFile(SaveDialogPNG.FileName);
     imgPreview.Picture.Assign(LImage);
   finally
     LImage.Free;
   end;
-  Self.SetStatus('PNG image exported: ' + dlgExportImage.FileName);
+  Self.SetStatus('PNG image exported: ' + SaveDialogPNG.FileName);
 end;
 
 end.
