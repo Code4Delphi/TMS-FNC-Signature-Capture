@@ -14,7 +14,11 @@ uses
   Vcl.ComCtrls,
   Vcl.Imaging.pngimage,
   VCL.TMSFNCGraphicsTypes,
-  VCL.TMSFNCSignatureCapture, VCL.TMSFNCTypes, VCL.TMSFNCUtils, VCL.TMSFNCGraphics, VCL.TMSFNCCustomControl;
+  VCL.TMSFNCSignatureCapture,
+  VCL.TMSFNCTypes,
+  VCL.TMSFNCUtils,
+  VCL.TMSFNCGraphics,
+  VCL.TMSFNCCustomControl;
 
 type
   TSignatureCaptureForm = class(TForm)
@@ -41,33 +45,25 @@ type
     btnExport: TButton;
     gBoxPreview: TGroupBox;
     imgPreview: TImage;
-    gBoxMemory: TGroupBox;
-    lbMemoryHelp: TLabel;
-    lbMemoryStatus: TLabel;
-    btnStoreMemory: TButton;
-    btnRestoreMemory: TButton;
     statusBar: TStatusBar;
     dlgSaveSignature: TSaveDialog;
     dlgOpenSignature: TOpenDialog;
     dlgExportImage: TSaveDialog;
     pnBody: TPanel;
     procedure FormCreate(Sender: TObject);
-    procedure FormDestroy(Sender: TObject);
     procedure SettingsChange(Sender: TObject);
     procedure btnClearClick(Sender: TObject);
     procedure btnSaveClick(Sender: TObject);
     procedure btnLoadClick(Sender: TObject);
     procedure btnPreviewClick(Sender: TObject);
     procedure btnExportClick(Sender: TObject);
-    procedure btnStoreMemoryClick(Sender: TObject);
-    procedure btnRestoreMemoryClick(Sender: TObject);
   private
-    FSignatureStream: TMemoryStream;
     procedure RequireSignature;
     procedure UpdatePreview;
     procedure SyncLoadedSettings;
     procedure SetStatus(const AMessage: string);
     function CreateSignatureImage: TPngImage;
+  public
   end;
 
 var
@@ -79,20 +75,14 @@ implementation
 
 procedure TSignatureCaptureForm.FormCreate(Sender: TObject);
 begin
-  FSignatureStream := TMemoryStream.Create;
   Self.SettingsChange(nil);
   Self.SetStatus('Ready. Draw your signature with a mouse or touch.');
-end;
-
-procedure TSignatureCaptureForm.FormDestroy(Sender: TObject);
-begin
-  FSignatureStream.Free;
 end;
 
 procedure TSignatureCaptureForm.SettingsChange(Sender: TObject);
 begin
   SignatureCapture.Pen.Color := TTMSFNCGraphicsColor(ColorToRGB(cBoxPenColor.Selected));
-  SignatureCapture.Pen.Width := string(cBoxPenWidth.Text).ToInteger;
+  SignatureCapture.Pen.Width := StrToIntDef(cBoxPenWidth.Text, 2);
   SignatureCapture.Text := Trim(edtHintText.Text);
 
   case cBoxHintPosition.ItemIndex of
@@ -213,29 +203,6 @@ begin
     LImage.Free;
   end;
   Self.SetStatus('PNG image exported: ' + dlgExportImage.FileName);
-end;
-
-procedure TSignatureCaptureForm.btnStoreMemoryClick(Sender: TObject);
-begin
-  Self.RequireSignature;
-  FSignatureStream.Clear;
-  SignatureCapture.SaveToStream(FSignatureStream);
-  FSignatureStream.Position := 0;
-  btnRestoreMemory.Enabled := True;
-  lbMemoryStatus.Caption := Format('Stored in memory: %d bytes', [FSignatureStream.Size]);
-  Self.SetStatus('Memory copy stored. Clear the signature, then click Restore.');
-end;
-
-procedure TSignatureCaptureForm.btnRestoreMemoryClick(Sender: TObject);
-begin
-  if FSignatureStream.Size = 0 then
-    Exit;
-
-  FSignatureStream.Position := 0;
-  SignatureCapture.LoadFromStream(FSignatureStream);
-  Self.SyncLoadedSettings;
-  Self.UpdatePreview;
-  Self.SetStatus('Signature restored from the memory stream.');
 end;
 
 end.

@@ -4,7 +4,7 @@ object SignatureCaptureForm: TSignatureCaptureForm
   Caption = 
     'TMS FNC Signature Capture Demo (Componente de Captura de Assinat' +
     'uras)'
-  ClientHeight = 800
+  ClientHeight = 776
   ClientWidth = 979
   Color = clBtnFace
   Constraints.MinHeight = 799
@@ -17,7 +17,6 @@ object SignatureCaptureForm: TSignatureCaptureForm
   KeyPreview = True
   Position = poScreenCenter
   OnCreate = FormCreate
-  OnDestroy = FormDestroy
   TextHeight = 17
   object pnHeader: TPanel
     Left = 0
@@ -29,8 +28,6 @@ object SignatureCaptureForm: TSignatureCaptureForm
     Color = 5583379
     ParentBackground = False
     TabOrder = 0
-    ExplicitTop = -6
-    ExplicitWidth = 960
     object lbTitle: TLabel
       Left = 20
       Top = 12
@@ -68,9 +65,6 @@ object SignatureCaptureForm: TSignatureCaptureForm
     Align = alTop
     Caption = ' Pen and appearance '
     TabOrder = 1
-    ExplicitLeft = 16
-    ExplicitTop = 92
-    ExplicitWidth = 928
     object lbPenColor: TLabel
       Left = 16
       Top = 24
@@ -171,19 +165,15 @@ object SignatureCaptureForm: TSignatureCaptureForm
     Left = 0
     Top = 176
     Width = 979
-    Height = 360
+    Height = 336
     Align = alClient
     Caption = ' Draw your signature '
     TabOrder = 2
-    ExplicitLeft = 1
-    ExplicitTop = 171
-    ExplicitWidth = 960
-    ExplicitHeight = 97
     object SignatureCapture: TTMSFNCSignatureCapture
       Left = 2
       Top = 19
       Width = 975
-      Height = 339
+      Height = 315
       Align = alClient
       ParentDoubleBuffered = False
       DoubleBuffered = True
@@ -212,96 +202,37 @@ object SignatureCaptureForm: TSignatureCaptureForm
         9BF81DFC6D961806E2BF2A28CDD9C4256B3C02F9ABAA11E0B2DB6EBD2B3973E8
         CAEBF07FA5015AFF9B23FE032285D13DFC9B4C88A8514AD93EEFA3BFD4B80259
         7AAE192BE517620000000049454E44AE426082}
-      ExplicitLeft = 1
-      ExplicitTop = 15
-      ExplicitWidth = 956
-      ExplicitHeight = 410
     end
   end
   object statusBar: TStatusBar
     Left = 0
-    Top = 778
+    Top = 754
     Width = 979
     Height = 22
     Panels = <>
     SimplePanel = True
-    ExplicitTop = 738
-    ExplicitWidth = 960
   end
   object pnBody: TPanel
     Left = 0
-    Top = 536
+    Top = 512
     Width = 979
     Height = 242
     Align = alBottom
     BevelOuter = bvNone
     Padding.Top = 10
     TabOrder = 4
-    object gBoxMemory: TGroupBox
-      Left = 641
-      Top = 46
-      Width = 338
-      Height = 196
-      Align = alRight
-      Caption = ' Memory stream '
-      TabOrder = 0
-      ExplicitLeft = 640
-      object lbMemoryHelp: TLabel
-        Left = 13
-        Top = 28
-        Width = 305
-        Height = 42
-        AutoSize = False
-        Caption = 
-          'Store a copy, clear the pad, then restore it without using a fil' +
-          'e.'
-        WordWrap = True
-      end
-      object lbMemoryStatus: TLabel
-        Left = 13
-        Top = 128
-        Width = 312
-        Height = 34
-        AutoSize = False
-        Caption = 'No signature stored in memory.'
-        WordWrap = True
-      end
-      object btnStoreMemory: TButton
-        Left = 13
-        Top = 80
-        Width = 148
-        Height = 34
-        Caption = 'Store in &memory'
-        TabOrder = 0
-        OnClick = btnStoreMemoryClick
-      end
-      object btnRestoreMemory: TButton
-        Left = 177
-        Top = 80
-        Width = 148
-        Height = 34
-        Caption = '&Restore'
-        Enabled = False
-        TabOrder = 1
-        OnClick = btnRestoreMemoryClick
-      end
-    end
     object gBoxPreview: TGroupBox
       Left = 0
       Top = 46
-      Width = 641
+      Width = 979
       Height = 196
       Align = alClient
       Caption = ' Export preview (click Update preview to refresh) '
-      TabOrder = 1
-      ExplicitLeft = 16
-      ExplicitTop = 140
-      ExplicitWidth = 568
-      ExplicitHeight = 188
+      TabOrder = 0
       object imgPreview: TImage
         Left = 2
         Top = 19
-        Width = 637
+        Width = 975
         Height = 175
         Align = alClient
         Center = True
@@ -320,10 +251,7 @@ object SignatureCaptureForm: TSignatureCaptureForm
       Height = 36
       Align = alTop
       BevelOuter = bvNone
-      TabOrder = 2
-      ExplicitLeft = 16
-      ExplicitTop = 292
-      ExplicitWidth = 928
+      TabOrder = 1
       object btnClear: TButton
         Left = 0
         Top = 0
