@@ -15,6 +15,27 @@ Projeto de exemplo em Delphi demonstrando o uso do **TTMSFNCSignatureCapture**, 
 ## Vídeos de demonstração
 - Em breve
 
+## Projeto de exemplo
+
+Abra `SignatureCaptureDemo.dproj` no Delphi 12 ou superior, com o **TMS FNC Core** e o **TMS FNC UI Pack** instalados e configurados no Library Path. O exemplo utiliza VCL e possui configurações para Win32 e Win64. Todos os textos da aplicação e nomes de componentes estão em inglês.
+
+- Desenhe na área **Draw your signature** com o mouse ou toque.
+- Ajuste **Pen color** e **Pen width** para os próximos traços; os traços existentes preservam sua aparência.
+- Altere **Hint text**, **Hint position** e **Show built-in clear icon** para personalizar a área de captura.
+- Use **Save signature** e **Load signature** para persistir os pontos no formato nativo `.sig`.
+- Use **Update preview** para atualizar a imagem e **Export PNG** para salvar uma imagem PNG real, sem o texto de orientação e o ícone de limpeza.
+- Use **Store in memory**, **Clear** e **Restore** para demonstrar `SaveToStream` e `LoadFromStream` com `TMemoryStream`. A cópia em memória existe apenas durante a execução.
+
+O formulário e todos os componentes estão em `Src/SignatureCapture.Main.dfm`, disponíveis no designer. Os eventos estão em `Src/SignatureCapture.Main.pas`. A exportação usa `SaveToImageStream` e converte a imagem com `TPngImage`, pois versões VCL do componente podem retornar BMP. A imagem utiliza as dimensões atuais da área de captura; ao carregar um `.sig`, os pontos mantêm suas coordenadas originais.
+
+Para compilar no **RAD Studio Command Prompt**:
+
+```bat
+msbuild SignatureCaptureDemo.dproj /t:Build /p:Config=Debug /p:Platform=Win32
+```
+
+O executável será gerado em `Bin/Win32/Debug/SignatureCaptureDemo.exe`.
+
 <br>
 
 ## Multiplataforma
