@@ -32,7 +32,7 @@ type
     cBoxHintPosition: TComboBox;
     ckShowClearIcon: TCheckBox;
     gBoxCapture: TGroupBox;
-    signatureCapture: TTMSFNCSignatureCapture;
+    SignatureCapture: TTMSFNCSignatureCapture;
     pnActions: TPanel;
     btnClear: TButton;
     btnSave: TButton;
@@ -50,6 +50,7 @@ type
     dlgSaveSignature: TSaveDialog;
     dlgOpenSignature: TOpenDialog;
     dlgExportImage: TSaveDialog;
+    pnBody: TPanel;
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
     procedure SettingsChange(Sender: TObject);
@@ -90,27 +91,27 @@ end;
 
 procedure TSignatureCaptureForm.SettingsChange(Sender: TObject);
 begin
-  signatureCapture.Pen.Color := TTMSFNCGraphicsColor(ColorToRGB(cBoxPenColor.Selected));
-  signatureCapture.Pen.Width := string(cBoxPenWidth.Text).ToInteger;
-  signatureCapture.Text := Trim(edtHintText.Text);
+  SignatureCapture.Pen.Color := TTMSFNCGraphicsColor(ColorToRGB(cBoxPenColor.Selected));
+  SignatureCapture.Pen.Width := string(cBoxPenWidth.Text).ToInteger;
+  SignatureCapture.Text := Trim(edtHintText.Text);
 
   case cBoxHintPosition.ItemIndex of
-    0: signatureCapture.TextPosition.Position := tpBottomCenter;
-    1: signatureCapture.TextPosition.Position := tpTopCenter;
-    2: signatureCapture.TextPosition.Position := tpNone;
+    0: SignatureCapture.TextPosition.Position := tpBottomCenter;
+    1: SignatureCapture.TextPosition.Position := tpTopCenter;
+    2: SignatureCapture.TextPosition.Position := tpNone;
   end;
 
   if ckShowClearIcon.Checked then
-    signatureCapture.ClearSig.Position := cpBottomRight
+    SignatureCapture.ClearSig.Position := TTMSFNCSignatureCaptureClearSignPosition.cpBottomRight
   else
-    signatureCapture.ClearSig.Position := cpNone;
+    SignatureCapture.ClearSig.Position := TTMSFNCSignatureCaptureClearSignPosition.cpNone;
 
-  signatureCapture.Invalidate;
+  SignatureCapture.Invalidate;
 end;
 
 procedure TSignatureCaptureForm.RequireSignature;
 begin
-  if signatureCapture.Empty then
+  if SignatureCapture.Empty then
     raise Exception.Create('Please draw a signature first.');
 end;
 
@@ -121,8 +122,8 @@ end;
 
 procedure TSignatureCaptureForm.btnClearClick(Sender: TObject);
 begin
-  signatureCapture.Empty := True;
-  signatureCapture.Invalidate;
+  SignatureCapture.Empty := True;
+  SignatureCapture.Invalidate;
   imgPreview.Picture.Assign(nil);
   Self.SetStatus('Signature cleared. The memory copy is still available.');
 end;
@@ -133,7 +134,7 @@ begin
   if not dlgSaveSignature.Execute then
     Exit;
 
-  signatureCapture.SaveToFile(dlgSaveSignature.FileName);
+  SignatureCapture.SaveToFile(dlgSaveSignature.FileName);
   Self.SetStatus('Signature saved: ' + dlgSaveSignature.FileName);
 end;
 
@@ -142,7 +143,7 @@ begin
   if not dlgOpenSignature.Execute then
     Exit;
 
-  signatureCapture.LoadFromFile(dlgOpenSignature.FileName);
+  SignatureCapture.LoadFromFile(dlgOpenSignature.FileName);
   Self.SyncLoadedSettings;
   Self.UpdatePreview;
   Self.SetStatus('Signature loaded: ' + dlgOpenSignature.FileName);
@@ -151,15 +152,15 @@ end;
 procedure TSignatureCaptureForm.SyncLoadedSettings;
 begin
   // The native signature format also restores the hint text and font.
-  edtHintText.Text := signatureCapture.Text;
-  signatureCapture.Invalidate;
+  edtHintText.Text := SignatureCapture.Text;
+  SignatureCapture.Invalidate;
 end;
 
 function TSignatureCaptureForm.CreateSignatureImage: TPngImage;
 begin
   var LStream := TMemoryStream.Create;
   try
-    signatureCapture.SaveToImageStream(LStream);
+    SignatureCapture.SaveToImageStream(LStream);
     LStream.Position := 0;
     var LPicture := TPicture.Create;
     try
@@ -218,7 +219,7 @@ procedure TSignatureCaptureForm.btnStoreMemoryClick(Sender: TObject);
 begin
   Self.RequireSignature;
   FSignatureStream.Clear;
-  signatureCapture.SaveToStream(FSignatureStream);
+  SignatureCapture.SaveToStream(FSignatureStream);
   FSignatureStream.Position := 0;
   btnRestoreMemory.Enabled := True;
   lbMemoryStatus.Caption := Format('Stored in memory: %d bytes', [FSignatureStream.Size]);
@@ -231,7 +232,7 @@ begin
     Exit;
 
   FSignatureStream.Position := 0;
-  signatureCapture.LoadFromStream(FSignatureStream);
+  SignatureCapture.LoadFromStream(FSignatureStream);
   Self.SyncLoadedSettings;
   Self.UpdatePreview;
   Self.SetStatus('Signature restored from the memory stream.');

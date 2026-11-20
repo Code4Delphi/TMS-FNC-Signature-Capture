@@ -2,7 +2,7 @@ object SignatureCaptureForm: TSignatureCaptureForm
   Left = 0
   Top = 0
   Caption = 'TMS FNC Signature Capture Demo'
-  ClientHeight = 760
+  ClientHeight = 853
   ClientWidth = 960
   Color = clBtnFace
   Constraints.MinHeight = 799
@@ -18,7 +18,7 @@ object SignatureCaptureForm: TSignatureCaptureForm
   OnDestroy = FormDestroy
   DesignSize = (
     960
-    760)
+    853)
   TextHeight = 17
   object pnHeader: TPanel
     Left = 0
@@ -60,13 +60,16 @@ object SignatureCaptureForm: TSignatureCaptureForm
     end
   end
   object gBoxSettings: TGroupBox
-    Left = 16
-    Top = 92
-    Width = 928
+    Left = 0
+    Top = 80
+    Width = 960
     Height = 96
-    Anchors = [akLeft, akTop, akRight]
+    Align = alTop
     Caption = ' Pen and appearance '
     TabOrder = 1
+    ExplicitLeft = 16
+    ExplicitTop = 92
+    ExplicitWidth = 928
     object lbPenColor: TLabel
       Left = 16
       Top = 24
@@ -164,23 +167,20 @@ object SignatureCaptureForm: TSignatureCaptureForm
     end
   end
   object gBoxCapture: TGroupBox
-    Left = 16
-    Top = 200
-    Width = 928
-    Height = 276
-    Anchors = [akLeft, akTop, akRight, akBottom]
+    Left = 0
+    Top = 176
+    Width = 960
+    Height = 97
+    Align = alTop
     Caption = ' Draw your signature '
     TabOrder = 2
-    DesignSize = (
-      928
-      276)
-    object signatureCapture: TTMSFNCSignatureCapture
-      Left = 16
-      Top = 28
-      Width = 896
-      Height = 232
+    object SignatureCapture: TTMSFNCSignatureCapture
+      Left = 2
+      Top = 19
+      Width = 956
+      Height = 76
+      Align = alClient
       ParentDoubleBuffered = False
-      Anchors = [akLeft, akTop, akRight, akBottom]
       DoubleBuffered = True
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
@@ -190,7 +190,6 @@ object SignatureCaptureForm: TSignatureCaptureForm
       TabOrder = 0
       Pen.Color = clNavy
       Pen.Width = 2.000000000000000000
-      Text = 'Sign here'
       TextPosition.Line.Color = clGray
       ClearSig.Position = cpBottomRight
       ClearSig.Image.Data = {
@@ -208,11 +207,15 @@ object SignatureCaptureForm: TSignatureCaptureForm
         9BF81DFC6D961806E2BF2A28CDD9C4256B3C02F9ABAA11E0B2DB6EBD2B3973E8
         CAEBF07FA5015AFF9B23FE032285D13DFC9B4C88A8514AD93EEFA3BFD4B80259
         7AAE192BE517620000000049454E44AE426082}
+      ExplicitLeft = 20
+      ExplicitTop = 17
+      ExplicitWidth = 928
+      ExplicitHeight = 232
     end
   end
   object pnActions: TPanel
     Left = 16
-    Top = 488
+    Top = 587
     Width = 928
     Height = 36
     Anchors = [akLeft, akRight, akBottom]
@@ -266,12 +269,13 @@ object SignatureCaptureForm: TSignatureCaptureForm
   end
   object gBoxPreview: TGroupBox
     Left = 16
-    Top = 536
+    Top = 629
     Width = 568
     Height = 188
     Anchors = [akLeft, akRight, akBottom]
     Caption = ' Export preview (click Update preview to refresh) '
     TabOrder = 4
+    ExplicitTop = 536
     DesignSize = (
       568
       188)
@@ -288,12 +292,13 @@ object SignatureCaptureForm: TSignatureCaptureForm
   end
   object gBoxMemory: TGroupBox
     Left = 600
-    Top = 536
+    Top = 629
     Width = 344
     Height = 188
     Anchors = [akRight, akBottom]
     Caption = ' Memory stream '
     TabOrder = 5
+    ExplicitTop = 536
     object lbMemoryHelp: TLabel
       Left = 16
       Top = 28
@@ -336,11 +341,21 @@ object SignatureCaptureForm: TSignatureCaptureForm
   end
   object statusBar: TStatusBar
     Left = 0
-    Top = 738
+    Top = 831
     Width = 960
     Height = 22
     Panels = <>
     SimplePanel = True
+    ExplicitTop = 738
+  end
+  object pnBody: TPanel
+    Left = 0
+    Top = 273
+    Width = 960
+    Height = 288
+    Align = alTop
+    Caption = 'pnBody'
+    TabOrder = 7
   end
   object dlgSaveSignature: TSaveDialog
     DefaultExt = 'sig'
