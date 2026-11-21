@@ -13,7 +13,7 @@ Projeto de exemplo em Delphi demonstrando o uso do **TTMSFNCSignatureCapture**, 
 |--|--|
 
 ## Vídeos de demonstração
-- Em breve
+- [Componente para Capturar Assinaturas no Delphi | TMSFNCSignatureCapture](https://www.youtube.com/watch?v=7uu0eHB8pWo)
 
 ## Multiplataforma
 <img width="524" height="124" alt="VCL-FMX-Web-FNC" src="https://github.com/user-attachments/assets/17b23899-0e26-4901-810e-f9a03e38deae" />
