@@ -98,14 +98,15 @@ begin
   else
     SignatureCapture.ClearSig.Position := TTMSFNCSignatureCaptureClearSignPosition.cpNone;
 
+  //requests that the component be redesigned / solicita que o componente seja redesenhado
   SignatureCapture.Invalidate;
 end;
 
 procedure TSignatureCaptureForm.btnClearClick(Sender: TObject);
 begin
   SignatureCapture.Empty := True;
-  //requests that the component be redesigned / solicita que o componente seja redesenhado
   SignatureCapture.Invalidate;
+
   imgPreview.Picture.Assign(nil);
 end;
 
@@ -148,17 +149,6 @@ begin
   end;
 end;
 
-procedure TSignatureCaptureForm.btnExportImageClick(Sender: TObject);
-begin
-  if SignatureCapture.Empty then
-    raise Exception.Create('Please draw a signature first.');
-
-  if not SaveDialogImg.Execute then
-    Exit;
-
-  SignatureCapture.SaveToImageFile(SaveDialogImg.FileName);
-end;
-
 function TSignatureCaptureForm.CreateSignatureImage: TPngImage;
 begin
   var LStream := TMemoryStream.Create;
@@ -183,6 +173,17 @@ begin
   finally
     LStream.Free;
   end;
+end;
+
+procedure TSignatureCaptureForm.btnExportImageClick(Sender: TObject);
+begin
+  if SignatureCapture.Empty then
+    raise Exception.Create('Please draw a signature first.');
+
+  if not SaveDialogImg.Execute then
+    Exit;
+
+  SignatureCapture.SaveToImageFile(SaveDialogImg.FileName);
 end;
 
 end.
